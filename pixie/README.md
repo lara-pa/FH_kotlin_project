@@ -21,195 +21,126 @@ There are ready to use Fake Data and Sample Data Providers available in the [sam
 
 ## Grading
 
-All Tasks are worth a total of **42** Points
+All Tasks are worth a total of **82** Points
 
 Scala:
 
-- *39*: 1
-- *32*: 2
-- *27*: 3
-- *21*: 4
+- *70*: 1
+- *60*: 2
+- *50*: 3
+- *40*: 4
 
-### Task 1: Post Card - *4P*
+### General App Structure - *10P*
 
-Create a Post Card Component. The [PostCard](src/main/java/fhs/mmt/nma/pixie/ui/home/PostCard.kt) composable including a Preview is already existing. 
+- [ ] Theme following the [Style Guide](Styleguide.pdf) - *6P*
+  - [ ] Typography - *1P*
+  - [ ] Light Colors - *2P*
+  - [ ] Dark Colors - *2P*
+  - [ ] Dark or Light Theme is applied depending on System Settings - *1P*
+- [ ] Navigation via [compose-navigation](https://developer.android.com/jetpack/compose/navigation) - *4P*
+  - [ ] Application uses Navigation component - *1P*
+  - [ ] Navigation starts with [HomeScreen](src/main/java/fhs/mmt/nma/pixie/ui/home/HomeScreen.kt) - *1P*
+  - [ ] Navigation can navigate to [ProfileScreen](src/main/java/fhs/mmt/nma/pixie/ui/profile/ProfileScreen.kt) - *2P*
+    - [ ] Navigation takes the `userId` as Argument - *1P*
 
-- It is not necessary to Display an Image within this Task
-- It is not necessary to Apply Text Styles yet
-- For now consider Posts to only have a Single Photo
+### Home Screen - *40P*
 
-
-Checklist
-- [ ] Spacings and Sizes are following the [Style Guide](Styleguide.pdf)
-- [ ] Avatar is round
-- [ ] Location is optional
-    - [ ] If Location is missing the User Name is Center aligned
-- [ ] Like and Comment are [TextButton](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#TextButton(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Boolean,androidx.compose.foundation.interaction.MutableInteractionSource,androidx.compose.material.ButtonElevation,androidx.compose.ui.graphics.Shape,androidx.compose.foundation.BorderStroke,androidx.compose.material.ButtonColors,androidx.compose.foundation.layout.PaddingValues,kotlin.Function1))
-    - [ ] Icons are implemented using [material-icons](https://developer.android.com/reference/kotlin/androidx/compose/material/icons/package-summary)
-    - _Note:_ there is no need to do anything when clicking the buttons
-
-### Task 2: Comments - *3P*
-
-Add existing Comments to the Card. Please be aware that Comments are optional and could be empty.
-The PostCard should only display the **latest** 2 Comments. If the total amount is more than 2 Additionally the Card should have a button Saying "Show all XXX Comments" where XXX should be replaced with the total comment Count
-
-- It is not necessary to Apply Text Styles yet
-
-**Checklist**
-- [ ] Spacings and Sizes are following the [Style Guide](Styleguide.pdf)
-- [ ] Comments are Optional
-- [ ] Only the latest 2 commments are displayed
-- [ ] Show all comments button is only displayed with 3 or more comments
-    - _Note:_ there is no need to do anything when clicking the button
-
-### Task 3: Theme - *3P*
-
-Adjust the existing [Theme](src/main/java/fhs/mmt/nma/pixie/ui/theme/Theme.kt) according to the [Style Guide](Styleguide.pdf).
-
-Revisit the PostCard created in Task 1 & 2 and apply all necessary text styles and colors according to the Style Guide
-
-**Checklist**
-- [ ] Colors follow [Style Guide](Styleguide.pdf)
-- [ ] Theme has a dark and light theme
-    - [ ] Enabling Dark Mode in the Android System changes to the dark Variant
-- [ ] Typography follows [Style Guide](Styleguide.pdf)
-    - [ ] Text elements are styled using the Theme reference
-    - _Note:_ the required fonts are already existent in resources
-
-### Task 4: Home Screen - *3P*
-
-Adjust the existing [HomeScreen](src/main/java/fhs/mmt/nma/pixie/ui/home/HomeScreen.kt) according to the [Style Guide](Styleguide.pdf).
-
-- The Screen should contain a _scrollable_ List of all Posts.
-- On Top of the Screen there should be a [Toolbar](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#TopAppBar(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function0,kotlin.Function1,androidx.compose.ui.graphics.Color,androidx.compose.ui.graphics.Color,androidx.compose.ui.unit.Dp))
-    - When scrolling through the Post List, the Toolbar should **not** scroll and remain on top 
-- On the Bottom of the Screen there should be a [BottomNavigation](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#BottomNavigation(androidx.compose.ui.Modifier,androidx.compose.ui.graphics.Color,androidx.compose.ui.graphics.Color,androidx.compose.ui.unit.Dp,kotlin.Function1))
-    - When scrolling through the Post List, the Bottom Navigation should **not** scroll and remain on the Bottom of the Screen
-    - Home is marked as active  
-
-**Checklist**
-- [ ] Colors, sizes and spacings follow [Style Guide](Styleguide.pdf)
-- [ ] List is implemented via a [LazyList](https://developer.android.com/jetpack/compose/lists#lazy)
-    - [ ] List items are spaced using arrangement
-
-### Task 5: Image Loading - *2P* + *2P optional*
-
-Load external Images from the network using [Coil](https://coil-kt.github.io/coil/compose/). 
-- Images should be Center Cropped and retain the given Aspect ratio.
-- If the Image cannot be loaded for any reason handle the state according to the [Style Guide](Styleguide.pdf)
-
-_Note:_ Posts are still considered to only have one Photo
-
-**Bonus Points**
-- While loading Images are displayed using an animated a shimmer [placeholder](https://google.github.io/accompanist/placeholder/#shimmer)
-
-**Checklist**
-- [ ] Colors, sizes and spacings follow [Style Guide](Styleguide.pdf)
-- [ ] Images are loaded from network using [Coil](https://coil-kt.github.io/coil/compose/)
-
-### Task 6: Image Gallery - *2P*
-
-Some Posts have more than one Photo. These Posts should have a Swipeable ImageGallery that is swipeable.
-
-- The Gallery should be implemented using the [Pager](https://google.github.io/accompanist/pager/) Component.
-- There is a [Indicator](https://google.github.io/accompanist/pager/#indicators) below the Gallery displaying the current active Photo and the total amount of Photos
-    - The Indicator is optional and only present if the Post contains multiple Photos
-
-_Note:_ The Indicator in the Top right corner can be ignored for no 
-
-**Checklist**
-- [ ] Colors, sizes and spacings follow [Style Guide](Styleguide.pdf)
-- [ ] Images are loaded from network using [Coil](https://coil-kt.github.io/coil/compose/)
-- [ ] If there are multiple Photos for a Post they are Swipeable
-- [ ] There is an indicator indicating the current Page
-    - [ ] The Indicator is not visible in the card when there is only one Photo
-
-### Task 7: Custom Page Indicator - *3P*
-
-In Addition to the Dot Indicator there should be another Indicator on the Top right corner of the Image displaying the current active Photo and total Photo amount.
-
-- The Indicator is stationary and should not scroll when the Gallery is swiped
-- When Swiping through the Gallery the Indicator should update accordingly
-
-**Checklist**
-- [ ] Colors, sizes and spacings follow [Style Guide](Styleguide.pdf)
-- [ ] If there are multiple Photos for a Post a custom Indicator is Displayed
-- [ ] Indicator reads state from the Pager
-    - [ ] When the Pager state changes the Indicatgor is Updated
-
-### Task 8: Navigation - *4P*
-
-The Application should have a [ProfileScreen](src/main/java/fhs/mmt/nma/pixie/ui/profile/ProfileScreen.k) in Addition to the Timeline Screen. Clicking on a UserName or UserAvatar should navigate to the Profile Screen for the clicked User
-
-- Navigation should be done via [compose-navigation](https://developer.android.com/jetpack/compose/navigation)
-- Launching the Application should always open the Timeline Screen
-- The Profile Screen needs to accept a userId as navigation argument
-
-_Note:_ For this task its only necessary to navigate to another Screen. The Screen Content is implemented within Task 7
-
-**Checklist**
-- [ ] Colors, sizes and spacings follow [Style Guide](Styleguide.pdf)
-- [ ] Navigation is implemented via [compose-navigation](https://developer.android.com/jetpack/compose/navigation)
-    - [ ] The Timeline Screen is the Start Destination
-    - [ ] The Profile Screen accepts a userId as argument
-
-### Task 9: Profile Screen - *6P*
-
-The User Profile Screen should contain all Elements as defined in the [Style Guide](Styleguide.pdf)
-
-- On Top of the Screen there should be a [Toolbar](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#TopAppBar(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function0,kotlin.Function1,androidx.compose.ui.graphics.Color,androidx.compose.ui.graphics.Color,androidx.compose.ui.unit.Dp)) containing the UserName and a Navigation Icon
-    - Clicking the Navigation arrow should invoke a `up` navigation
-    - The Toolbar is stationary and should not Scroll
-- The Whole Screen Content (except the Toolbar) should be scrollable
-- Clicking on the Social Profile should open Instagram with the correct user profile
-    - If Instagram is not installed the Web Browser should open up
-- The Screen Contains a Gallery displaying all Photos the User has taken
-    - The Gallery is displayed as Grid
-    - Every Row contains 3 Photos
+- [ ] Screen Contains a [TopAppBar](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary#TopAppBar(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function0,kotlin.Function1,androidx.compose.foundation.layout.WindowInsets,androidx.compose.material3.TopAppBarColors,androidx.compose.material3.TopAppBarScrollBehavior)) - *1P*
+- [ ] Displays a Scrollable List of All Posts - *3P*
+  - [ ] List is using [LazyColumn](https://developer.android.com/jetpack/compose/lists) - *1P*
+  - [ ] Items have correct Spacing using [Arrangement](https://developer.android.com/jetpack/compose/lists#content-spacing) - *1P*
+  - [ ] List is displaying [PostCard](src/main/java/fhs/mmt/nma/pixie/ui/home/PostCard.kt) Items - *1P*
+- [ ] Post Cards are displaying all Information
+  - [ ] Author Profile Picture - *2P*
+    - [ ] Circular Shape - *1P*
+    - [ ] Colored Outline - *1P*
+  - [ ] Author Name - *1P*
+  - [ ] Clicking the Author Image or Name should navigate to the [ProfileScreen](src/main/java/fhs/mmt/nma/pixie/ui/profile/ProfileScreen.kt) - *1P*
+  - [ ] Author Location - *1P*
+  - [ ] Post Image - *3P*
+    - [ ] Image is loaded using [Coil](https://coil-kt.github.io/coil/compose/) - *1P*
+    - [ ] While the image is loading a [Shimmer Placeholder](https://google.github.io/accompanist/placeholder/#shimmer) is displayed - *1P*
+    - [ ] Images that cannot be loaded display an Error Icon
+  - [ ] Posts containing Multiple Images display using a [HorizontalPager](https://developer.android.com/jetpack/compose/layouts/pager) - *6P*
+    - [ ] All Posts can be accessed by swiping - *2P*
+    - [ ] The Current Page is indicated by a Circular Paging Indicator - *2P*
+    - [ ] A Badge Indicating the Current and Total Images is displayed - *2P*
+  - [ ] Amount of Likes using a [TextButton](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#TextButton(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Boolean,androidx.compose.foundation.interaction.MutableInteractionSource,androidx.compose.material.ButtonElevation,androidx.compose.ui.graphics.Shape,androidx.compose.foundation.BorderStroke,androidx.compose.material.ButtonColors,androidx.compose.foundation.layout.PaddingValues,kotlin.Function1)) - *5P*
+    - [ ] The total amount of likes - *1P*
+    - [ ] Posts liked by the user are indicated with the `filled` variant of the `Favorite` Icon from [material-icons](https://developer.android.com/reference/kotlin/androidx/compose/material/icons/package-summary) - *1P*
+    - [ ] Posts _not_ liked by the user are indicated with the `default` variant of the `Favorite` Icon from [material-icons](https://developer.android.com/reference/kotlin/androidx/compose/material/icons/package-summary) - *1P*
+    - [ ] Clicking the Button Toggles the users liked state - *2P*
+- [ ] Amount of Comments using a [TextButton](https://developer.android.com/reference/kotlin/androidx/compose/material/package-summary#TextButton(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Boolean,androidx.compose.foundation.interaction.MutableInteractionSource,androidx.compose.material.ButtonElevation,androidx.compose.ui.graphics.Shape,androidx.compose.foundation.BorderStroke,androidx.compose.material.ButtonColors,androidx.compose.foundation.layout.PaddingValues,kotlin.Function1)) - *2P*
+  - [ ] The total amount of comments - *1P*
+  - [ ] Button is not clickable and has no indication - *1P*
+- [ ] The 2 _newest_ Comments - *4P*
+  - If no comments are present, no space is taken - *1P*
+  - If there are more than 2 Comments a button "Show all Comments" is shown - *1P*
+    - The button should be clickable but needs no action
+  - Post Author is clickable and opens the [ProfileScreen](src/main/java/fhs/mmt/nma/pixie/ui/profile/ProfileScreen.kt) - *1P*
+  - Comments are displaying maximum 2 Lines. The overflow should Ellipsize - *1P*
+- [ ] Screen is using MVVM Architecture and has a `HomeViewModel` - *10P*
+  - [ ] Screen State is represented using a [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - *3P*
+    - [ ] There is a Loading and Content State
+  - [ ] State is Collected honoring the lifecycle - *2P*
+  - [ ] Composables take advantage of [State Hoisting](https://developer.android.com/jetpack/compose/state#state-hoisting) - *4P*
+    - [ ] Previews for all States are Present - *1P*
 
 
-**Checklist**
-- [ ] Colors, sizes and spacings follow [Style Guide](Styleguide.pdf)
-- [ ] Whole Screen is Scrollable
-    - [ ] Scrolling is Implemented using a [LazyList](https://developer.android.com/jetpack/compose/lists#lazy)
-- [ ] Gallery Items width is calculated dynamically with given available screensize
+### Home Screen - *32P*
 
+- [ ] Screen Contains a [TopAppBar](https://developer.android.com/reference/kotlin/androidx/compose/material3/package-summary#TopAppBar(kotlin.Function0,androidx.compose.ui.Modifier,kotlin.Function0,kotlin.Function1,androidx.compose.foundation.layout.WindowInsets,androidx.compose.material3.TopAppBarColors,androidx.compose.material3.TopAppBarScrollBehavior)) - *3P*
+  - [ ] The Current User Name is Displayed - *1P*
+  - [ ] Contains a Back Button - *2P*
+    - [ ] Clicking the Button should navigate backwards
+- [ ] The Whole Screen Content is Scrollable using [LazyVerticalGrid](https://developer.android.com/jetpack/compose/lists) - *3P*
+  - [ ] The TopAppBar should remain Stationary - *1P*
+  - [ ] Author Profile Picture - *2P*
+    - [ ] Circular Shape - *1P*
+    - [ ] Colored Outline - *1P*
+  - [ ] Total Amount of likes across all Posts - *2P*
+    - Large Numbers are formatted in a human readable format using [NumberFormatter](https://developer.android.com/reference/android/icu/number/NumberFormatter) - *1P*
+  - [ ] Total Amount of Photos - *2P*
+    - Large Numbers are formatted in a human readable format using [NumberFormatter](https://developer.android.com/reference/android/icu/number/NumberFormatter) - *1P*
+  - [ ] Total Amount of Comments the User has Posted - *2P*
+    - Large Numbers are formatted in a human readable format using [NumberFormatter](https://developer.android.com/reference/android/icu/number/NumberFormatter) - *1P*
+  - [ ] Location with an Leading Icon - *1P*
+  - [ ] If present Social Media Account with leading Icon - *1P*
+  - [ ] Profile Description (Bio) - *1P*
+  - [ ] All Photos Posted by the User - *5P*
+    - [ ] Image - *3P*
+      - [ ] Image is loaded using [Coil](https://coil-kt.github.io/coil/compose/) - *1P*
+      - [ ] While the image is loading a [Shimmer Placeholder](https://google.github.io/accompanist/placeholder/#shimmer) is displayed - *1P*
+      - [ ] Images that cannot be loaded display an Error Icon
+    - [ ] The Amount of Images displayed within one Row is Dynamic depending on Available Screen Size. Items should have a `minSize` of `128.dp` - *2P*
+- [ ] Screen is using MVVM Architecture and has a `ProfileViewModel` - *12P*
+  - [ ] The `userId` argument from Navigation is extracted within the ViewModel - *2P*
+    - [ ] If the Argument cannot be read or is missing the State should go into the Error State.
+  - [ ] Screen State is represented using a [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - *3P*
+    - [ ] There is a Loading, Content and Error State
+  - [ ] State is Collected honoring the lifecycle - *2P*
+  - [ ] Composables take advantage of [State Hoisting](https://developer.android.com/jetpack/compose/state#state-hoisting) - *4P*
+    - [ ] Previews for all States are Present - *1P*
 
-### Task 10: ViewModel on Home - *5P*
+### Bonus: Comments Screen - *27P*
 
-The Home Screen should use a ViewModel and expose all Posts as member property
+This is an Optional Task and _not_ required for passing. This however gives you a chance of scoring extra Points.
 
-- The instance of the ViewModel should be created using the `viewModel()` composable function in the navigation graph
-
-
-**Checklist**
-- [ ] HomeViewModel extends `androidx.lifecycle.ViewModel`
-- [ ] HomeViewModel is created using `viewModel()` composable function
-- [ ] HomeViewModel defines a property for all Available Posts
-    - [ ] the Composable reads the property from the given ViewModel
-
-**Bonus Points**
-- HomeScreen uses state hoisting
-  - The hoisted HomeScreen has no references to the ViewModel directly
-  - There are Previews available for all possible (hoisted) UI States
-
-### Task 11: ViewModel on Profile - *5P*
-
-The Profile Screen should use a ViewModel and expose data using a remodeled UI Data class
-
-- The required data should be put into a new `data class` 
-- The userId needs to be read inside the viewmodel
-    - This is achievable by accepting a `SavedStateHandle` as constructor argument in the ViewModel and by scoping the viewmodel to the backstack entry
-
-**Checklist**
-- [ ] ProfileViewModel extends `androidx.lifecycle.ViewModel`
-- [ ] ProfileViewModel is created using `viewModel()` composable function
-    - [ ] the viewmodel is scoped to the backstack entry
-- [ ] ProfileViewModel defines a property for all Required Data
-    - [ ] the Composable reads the property from the given ViewModel
-    - [ ] the data is captured in a seperate `data class` 
-
-**Bonus Points**
-- ProfileScreen uses state hoisting
-  - The hoisted ProfileScreen(s) have no references to the ViewModel directly
-  - There are Previews available for all possible (hoisted) UI States
+- [ ] data structure is adjusted to allow Identification of Posts - *2P*
+  - [ ] Sample/Fake Data generation is adjusted
+- [ ] Screen can be navigated to using Navigation - *5P*
+  - [ ] The route contains the `postId` as argument - *2P*
+  - [ ] Destination is a [Full-screen](https://m3.material.io/components/dialogs/specs) `dialog` destination - *3P* 
+- [ ] Screen contains a "Close" Action - *2P*
+- [ ] Screen is Scrollable using [LazyColumn](https://developer.android.com/jetpack/compose/lists) - *2P*
+- [ ] All Comments for the given Post are Displayed - *2P*
+  - [ ] Comments are displayed in full content, no truncation
+- [ ] Post Author is Displayed, Clicking on the Author should navigate to the ProfileScreen - *2P*
+- [ ] Screen is using MVVM Architecture and has a `PostCommentViewModel` - *12P*
+  - [ ] The `postId` argument from Navigation is extracted within the ViewModel - *2P*
+    - [ ] If the Argument cannot be read or is missing the State should go into the Error State.
+  - [ ] Screen State is represented using a [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#stateflow) - *3P*
+    - [ ] There is a Loading, Content and Error State
+  - [ ] State is Collected honoring the lifecycle - *2P*
+  - [ ] Composables take advantage of [State Hoisting](https://developer.android.com/jetpack/compose/state#state-hoisting) - *4P*
+    - [ ] Previews for all States are Present - *1P*
