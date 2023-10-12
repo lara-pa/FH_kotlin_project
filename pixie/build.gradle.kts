@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "fhs.mmt.nma.pixie"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
 
@@ -43,7 +43,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.1"
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
     }
     namespace = "fhs.mmt.nma.pixie"
 
@@ -51,19 +51,22 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core)
-    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
 
-    implementation(libs.compose.material.material)
-    implementation(libs.compose.material.icons)
-    implementation(libs.compose.ui.ui)
-    implementation(libs.compose.ui.tooling)
+    implementation(platform(libs.androidx.compose.bom))
+
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.foundation.layout)
+
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.iconsExtended)
 
     implementation(libs.androidx.navigation.compose)
 
-    implementation(libs.accompanist.pager.pager)
-    implementation(libs.accompanist.pager.indicators)
-
-    implementation(libs.coil.compose)
+    implementation(libs.coil.kt.compose)
 }

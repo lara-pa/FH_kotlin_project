@@ -1,7 +1,7 @@
 package fhs.mmt.nma.pixie.ui.profile
 
 import android.content.res.Configuration
-import androidx.compose.material.Text
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter

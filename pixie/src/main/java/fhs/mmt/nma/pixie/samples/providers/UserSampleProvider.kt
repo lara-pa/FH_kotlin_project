@@ -7,5 +7,5 @@ import fhs.mmt.nma.pixie.samples.IvanCujic
 
 class UserSampleProvider: PreviewParameterProvider<User> {
     override val values: Sequence<User>
-        get() = sequenceOf(IvanCujic, FakeUsers.first())
+        get() = sequenceOf(IvanCujic, FakeUsers.random())
 }
