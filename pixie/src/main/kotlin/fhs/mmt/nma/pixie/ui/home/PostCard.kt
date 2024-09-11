@@ -11,7 +11,7 @@ import fhs.mmt.nma.pixie.ui.theme.PixieTheme
 
 @Composable
 fun PostCard(post: Post, onClick: () -> Unit = {}) {
-    Text("Hello World")
+    Text("TODO: $post")
 }
 
 @Preview

@@ -1,9 +1,12 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
+    namespace = "fhs.mmt.nma.pixie"
+
     compileSdk = 34
 
     defaultConfig {
@@ -42,11 +45,11 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
-    }
-    namespace = "fhs.mmt.nma.pixie"
 
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 
 dependencies {
