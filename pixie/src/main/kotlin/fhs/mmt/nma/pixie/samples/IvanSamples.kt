@@ -29,14 +29,14 @@ val IvanPost1 = Post(
 val IvanPost2 = Post(
     photos = listOf(RedPanda),
     author = IvanCujic,
-    comments = generateComments(15),
+    comments = generateComments(2),
     likes = 1337
 )
 
 val IvanPost3 = Post(
     photos = listOf(Pelican),
     author = IvanCujic,
-    comments = generateComments(2),
+    comments = generateComments(15),
     likes = 9_888_777
 )
 

@@ -7,6 +7,4 @@ import fhs.mmt.nma.pixie.samples.IvanPosts
 class PostSampleProvider : PreviewParameterProvider<Post> {
     override val values: Sequence<Post>
         get() = IvanPosts.asSequence()
-
-
 }

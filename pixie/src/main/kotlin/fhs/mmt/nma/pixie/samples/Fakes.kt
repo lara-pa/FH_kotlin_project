@@ -6,56 +6,96 @@ import fhs.mmt.nma.pixie.data.Photographer
 import fhs.mmt.nma.pixie.data.Photography
 import fhs.mmt.nma.pixie.data.Post
 import fhs.mmt.nma.pixie.data.User
+import fhs.mmt.nma.pixie.samples.FakePhotoSource.Pexels
+import fhs.mmt.nma.pixie.samples.FakePhotoSource.RandomDucks
 import kotlin.random.Random
 
-private val FakeUserNames = listOf(
-    "Magda Reinlangen",
-    "Wanda Lissmus",
-    "Sergej Fährlich",
-    "Brunhilde",
-    "Wilhelm",
-    "MemeK1ng",
-    "user9981247",
-    "Donald Duck",
-    "Darth_Vader_1337",
-    "Lazer_Saber_Boy",
-    "Lancelot",
-    "Alice Wonder"
+
+private enum class FakePhotoSource {
+    Pexels, RandomDucks
+}
+
+private data class FakeUser(
+    val id: Int,
+    val name: String,
+    val photoSource: FakePhotoSource,
+    val location: String? = null,
+    val instagram: String? = null
 )
 
-val FakeUsers = FakeUserNames.mapIndexed { index, name -> generateFakeUser(index, name) }
+private val FakeUserSource = listOf(
+    FakeUser(
+        id = 100,
+        name = "Magda Reinlangen",
+        photoSource = Pexels,
+        location = "München"
+    ),
+    FakeUser(
+        id = 200,
+        name = "Donald Duck",
+        photoSource = RandomDucks,
+        location = "Entenhausen",
+        instagram = "disney.donaldduck"
+    ),
+    FakeUser(
+        id = 250,
+        name = "Alice Wonder",
+        photoSource = Pexels,
+        instagram = "aliceinwonderlandlc"
+    ),
+    FakeUser(
+        id = 300,
+        name = "Wilhelm",
+        photoSource = Pexels,
+    ),
+    FakeUser(
+        id = 350,
+        name = "Lancelot",
+        photoSource = RandomDucks,
+        location = "United Kingdom \uD83C\uDDEC\uD83C\uDDE7"
+    )
+)
+
+
+val FakeUsers = FakeUserSource.map(::generateFakeUser)
 
 val FakePosts = List(100) {
     generateFakePost()
 }
 
-internal fun generateFakePost(
-    photos: Int = Random.nextInt(from = 1, until = 10),
+private fun generateFakePost(
+    photos: Int = Random.nextInt(from = 1, until = 15),
     likes: Int = Random.nextInt(from = 0, until = 999_999),
     comments: Int = Random.nextInt(0, 1_000)
-) = Post(
-    author = FakeUsers.random().asFakePhotographer(),
-    photos = List(photos) { if (Random.nextBoolean()) generatePexelsPhoto() else generateDuckPhoto() },
-    likes = likes,
-    comments = generateComments(comments)
-)
+) = with(FakeUsers.random()) {
+    Post(
+        author = this,
+        photos = List(photos) {
+            when (FakeUserSource.find { it.id == id }?.photoSource ?: Pexels) {
+                Pexels -> generatePexelsPhoto()
+                RandomDucks -> generateDuckPhoto()
+            }
+        },
+        likes = likes,
+        comments = generateComments(comments)
+    )
+}
 
-private fun User.asFakePhotographer() = Photographer(
-    id = id,
-    name = name,
-    picture = picture,
-    bio = LoremIpsum(400).values.joinToString()
-)
 
-internal fun generateFakeUser(userId: Int = 0, name: String = FakeUserNames.random()) =
+private fun generateFakeUser(fakeUser: FakeUser) =
     Photographer(
-        id = userId,
-        name = name,
-        picture = generateDuckPhoto().url,
-        bio = LoremIpsum(Random.nextInt(0, 400)).values.joinToString()
+        id = fakeUser.id,
+        name = fakeUser.name,
+        picture = when (fakeUser.photoSource) {
+            Pexels -> generatePexelsPhoto().url
+            RandomDucks -> generateDuckPhoto().url
+        },
+        location = fakeUser.location,
+        instagram = fakeUser.instagram,
+        bio = LoremIpsum(Random.nextInt(0, 100)).values.joinToString()
     )
 
-internal fun generateComment(maxWords: Int = 20, author: User = FakeUsers.random()) = Comment(
+private fun generateComment(maxWords: Int = 20, author: User = FakeUsers.random()) = Comment(
     message = LoremIpsum(Random.nextInt(1, maxWords)).values.joinToString(),
     author = author
 )
@@ -64,7 +104,7 @@ internal fun generateComments(amount: Int = Random.nextInt(0, 20)) = List(amount
     generateComment()
 }
 
-internal fun generatePhoto(url: String) = Photography(
+private fun generatePhoto(url: String) = Photography(
     url = url
 )
 
@@ -73,6 +113,6 @@ internal fun generatePexelsPhoto(id: Int = Random.nextInt(from = 6_000_000, unti
         url = "https://images.pexels.com/photos/$id/pexels-photo-$id.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1080"
     )
 
-internal fun generateDuckPhoto(id: Int = Random.nextInt(from = 1, until = 192)) = generatePhoto(
+private fun generateDuckPhoto(id: Int = Random.nextInt(from = 1, until = 192)) = generatePhoto(
     url = "https://random-d.uk/api/v2/$id.jpg"
 )

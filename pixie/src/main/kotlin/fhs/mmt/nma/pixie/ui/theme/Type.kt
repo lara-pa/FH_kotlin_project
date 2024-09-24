@@ -7,20 +7,25 @@ import androidx.compose.ui.text.font.FontWeight
 import fhs.mmt.nma.pixie.R
 
 
-private val Nunito = FontFamily(
+private val NunitoFontFamily = FontFamily(
     fonts = listOf(
         Font(
-            resId = R.font.nunito_light,
+            resId = R.font.nunito_sans_light,
             weight = FontWeight.Light,
             style = FontStyle.Normal
         ),
         Font(
-            resId = R.font.nunito_bold,
+            resId = R.font.nunito_sans_regular,
+            weight = FontWeight.Normal,
+            style = FontStyle.Normal
+        ),
+        Font(
+            resId = R.font.nunito_sans_bold,
             weight = FontWeight.Bold,
             style = FontStyle.Normal
         ),
         Font(
-            resId = R.font.nunito_semi_bold,
+            resId = R.font.nunito_sans_semi_bold,
             weight = FontWeight.SemiBold,
             style = FontStyle.Normal
         ),

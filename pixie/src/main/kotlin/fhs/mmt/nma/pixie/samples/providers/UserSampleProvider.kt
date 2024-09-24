@@ -5,7 +5,7 @@ import fhs.mmt.nma.pixie.data.User
 import fhs.mmt.nma.pixie.samples.FakeUsers
 import fhs.mmt.nma.pixie.samples.IvanCujic
 
-class UserSampleProvider: PreviewParameterProvider<User> {
+class UserSampleProvider : PreviewParameterProvider<User> {
     override val values: Sequence<User>
-        get() = sequenceOf(IvanCujic, FakeUsers.random())
+        get() = sequenceOf(IvanCujic) + FakeUsers.asSequence()
 }

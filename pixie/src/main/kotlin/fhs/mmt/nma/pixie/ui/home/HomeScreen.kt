@@ -1,28 +1,23 @@
 package fhs.mmt.nma.pixie.ui.home
 
-import android.content.res.Configuration
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import fhs.mmt.nma.pixie.data.Post
-import fhs.mmt.nma.pixie.samples.AllPosts
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import fhs.mmt.nma.pixie.ui.theme.PixieTheme
 
 @Composable
-fun HomeScreen(posts: List<Post> = AllPosts) {
+fun HomeScreen() {
     //TODO: Display all posts as list
-    Text("TODO: List Of Posts display $posts")
 }
 
 
-@Preview
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewLightDark
 @Composable
-fun HomePreview() {
+private fun HomePreview() {
     PixieTheme {
         HomeScreen()
     }
 }
+
 
 
 
