@@ -20,8 +20,7 @@ fun PostCardComments(post: Post, onUserClick: (String) -> Unit) {
                 
                 Text(
                     text = comment.author.name,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.clickable { onUserClick(comment.author.id.toString()) }
@@ -29,19 +28,21 @@ fun PostCardComments(post: Post, onUserClick: (String) -> Unit) {
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = comment.message,
-                    style = MaterialTheme.typography.bodySmall,
                     maxLines = 2,
-                    overflow = TextOverflow.Ellipsis
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.labelSmall,
                 )
             }
         }
 
         if (post.comments.size > 2) {
+            Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "Show all ${post.comments.size} Comments",
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {}
+                    .padding(vertical = 20.dp)
             )
         }
     }

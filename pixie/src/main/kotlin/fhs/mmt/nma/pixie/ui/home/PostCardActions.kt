@@ -43,7 +43,7 @@ fun PostCardActions(post: Post, pagerState: PagerState) {
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = formatNumber(post.likes + if (isLiked) 1 else 0),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary
             )
         }
@@ -82,7 +82,7 @@ fun PostCardActions(post: Post, pagerState: PagerState) {
             Spacer(modifier = Modifier.width(4.dp))
             Text(
                 text = formatNumber(post.comments.size),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary
             )
         }
